@@ -1,3 +1,12 @@
+body {
+    background: radial-gradient(
+        circle,
+        rgba(44, 62, 80, 1) 0%,        /* Center light blue */
+        rgba(34, 49, 63, 1) 50%,       /* Mid dark blue */
+        rgba(19, 30, 40, 1) 100%       /* Outer darker blue */
+    );
+}
+
 #games {
     width: 80%;
     margin-left: 10%;
@@ -85,4 +94,5 @@
     border: none;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    overflow: hidden;
 }

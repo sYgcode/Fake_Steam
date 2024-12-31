@@ -1,3 +1,7 @@
+body {
+    height: 56px;
+}
+
 #navbar {
     background-color: #333;
     overflow: hidden;
@@ -5,11 +9,10 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 0;
-    height: 40px;
 }
 
 #navbar #search-bar input {
-    height: 30.8px;
+    height: 36px;
     border-radius: 5px;
 }
 
