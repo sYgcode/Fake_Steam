@@ -47,9 +47,17 @@ footer iframe {
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
+    border-color: #1B1B1B;
+    border: 2px solid;
 }
 
-button {
+.login form input{
+    font-size: 1.3em;
+    border-radius: 0.6em;
+    
+}
+
+button, input[type=submit] {
     background-color: #1F8A70;
     color: #E5E5E5;
     border: none;
@@ -58,7 +66,7 @@ button {
     transition: background-color 0.3s ease;
 }
 
-button:hover {
+button:hover, input[type=submit]:hover {
     background-color: #3BAF8E;
 }
 
@@ -71,4 +79,11 @@ header {
 h1, h2 {
     color: #F2A365;
     text-align: center;
+}
+
+h3 {
+    text-align: center;
+    color: black;
+    font-size: medium;
+    margin-top: 5px;
 }
