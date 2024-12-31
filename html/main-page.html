@@ -6,7 +6,7 @@
     <title>Main Page - Fake Steam</title>
     <link rel="stylesheet" href="../css/home.css">
     <link rel="stylesheet" href="../css/main-page.css">
-    <script src="../javascript/login.js" defer></script> 
+    <script src="../javascript/main-page.js" defer></script>
 </head>
 <body>
     <nav>
@@ -18,48 +18,78 @@
         <h2>Take a look at our great games</h2>
 
         <div id="games">
-            <h3>Our newest games!</h3>
-            <div id="newest-games">
-                <div class="game">
-                    <img src="../images/Falling Frenzy.jpeg" alt="Game 1">
-                    <h4>Game 1</h4>
-                    <p>Price: $10</p>
-                    <button class="buy-button">Buy</button>
-                </div>
-                <div class="game">
-                    <img src="../images/Falling Frenzy.jpeg" alt="Game 2">
-                    <h4>Game 2</h4>
-                    <p>Price: $20</p>
-                    <button class="buy-button">Buy</button>
-                </div>
-                <div class="game">
-                    <img src="../images/Falling Frenzy.jpeg" alt="Game 3">
-                    <h4>Game 3</h4>
-                    <p>Price: $30</p>
-                    <button class="buy-button">Buy</button>
-                </div>
-            </div>
+            <div id="newest-games-container">
+                <h3>Our newest games!</h3>
+                <div id="newest-games">
+                    <div class="game">
+                        <img src="../images/Falling Frenzy.jpeg" alt="Game 1">
+                        <h4>Game 1</h4>
+                        <p>Price: $10</p>
+                        <div class="game-buttons">
+                            <button class="buy-button">Buy</button>
+                            <button class="play-button">Play Preview</button>
+                        </div>
+                    </div>
+                    <div class="game">
+                        <img src="../images/Falling Frenzy.jpeg" alt="Game 2">
+                        <h4>Game 2</h4>
+                        <p>Price: $20</p>
+                        <div class="game-buttons">
+                            <button class="buy-button">Buy</button>
+                            <button class="play-button">Play Preview</button>
+                        </div>
+                    </div>
+                    <div class="game">
+                        <img src="../images/Falling Frenzy.jpeg" alt="Game 3">
+                        <h4>Game 3</h4>
+                        <p>Price: $30</p>
+                        <div class="game-buttons">
+                            <button class="buy-button">Buy</button>
+                            <button class="play-button">Play Preview</button>
+                        </div>
+                    </div>
+                </div> <!-- newest-games -->
+            </div> <!-- newest-games-container -->
 
-            <h3>Users' favorites</h3>
-            <div id="favorite-games">
-                <div class="game">
-                    <img src="../images/Falling Frenzy.jpeg" alt="Game 1">
-                    <h4>Game 1</h4>
-                    <p>Price: $10</p>
-                    <button class="buy-button">Buy</button>
-                </div>
-                <div class="game">
-                    <img src="../images/Falling Frenzy.jpeg" alt="Game 4">
-                    <h4>Game 4</h4>
-                    <p>Price: $40</p>
-                    <button class="buy-button">Buy</button>
-                </div>
-                <div class="game">
-                    <img src="../images/Falling Frenzy.jpeg" alt="Game 2">
-                    <h4>Game 2</h4>
-                    <p>Price: $20</p>
-                    <button class="buy-button">Buy</button>
-                </div>
+            <div id="favorite-games-container">
+                <h3>Users' favorites</h3>
+                <div id="favorite-games">
+                    <div class="game">
+                        <img src="../images/Falling Frenzy.jpeg" alt="Game 1">
+                        <h4>Game 1</h4>
+                        <p>Price: $10</p>
+                        <div class="game-buttons">
+                            <button class="buy-button">Buy</button>
+                            <button class="play-button">Play Preview</button>
+                        </div>
+                    </div>
+                    <div class="game">
+                        <img src="../images/Falling Frenzy.jpeg" alt="Game 4">
+                        <h4>Game 4</h4>
+                        <p>Price: $40</p>
+                        <div class="game-buttons">
+                            <button class="buy-button">Buy</button>
+                            <button class="play-button">Play Preview</button>
+                        </div>
+                    </div>
+                    <div class="game">
+                        <img src="../images/Falling Frenzy.jpeg" alt="Game 2">
+                        <h4>Game 2</h4>
+                        <p>Price: $20</p>
+                        <div class="game-buttons">
+                            <button class="buy-button">Buy</button>
+                            <button class="play-button">Play Preview</button>
+                        </div>
+                    </div>
+                </div> <!-- favorite-games -->
+            </div> <!-- favorite-games-container -->
+        </div> <!-- games -->
+
+        <div class="modal" id="play-preview-modal">
+            <div class="modal-content">
+                <span id="close-button"></span>
+                <h3>Game Preview</h3>
+                <iframe id="game-frame" src="" frameborder="0"></iframe>
             </div>
         </div>
     </main>
