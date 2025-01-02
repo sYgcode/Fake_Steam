@@ -17,7 +17,6 @@ function customHash(input) {
 
 // function to retrieve the users array, if it doesn't exist then create a new one
 function initializeUserArray() {
-    const users = localStorage.getItem('Users');
     const users = localStorage.getItem('users');
     if (!users) {
         localStorage.setItem('users', JSON.stringify([]));
