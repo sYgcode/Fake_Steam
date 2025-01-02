@@ -6,18 +6,33 @@ const exampleUser = {
 }
 
 
+function customHash(input) {
+    let hash = 5381; // Starting with a prime number
+    for (let i = 0; i < input.length; i++) {
+        const charCode = input.charCodeAt(i); // Get the Unicode of the character
+        hash = (hash * 33) ^ charCode; // Multiply by 33 and XOR with the character code
+    }
+    return hash >>> 0; // Ensure the hash is non-negative by using unsigned right shift
+}
+
 // function to retrieve the users array, if it doesn't exist then create a new one
 function initializeUserArray() {
     const users = localStorage.getItem('users');
     if (!users) {
         localStorage.setItem('users', JSON.stringify([]));
-        users = localStorage.getItem('user');
+        users = localStorage.getItem('users');
     }
 
     return JSON.parse(users);
 }
 
-function createUser (username, password, email, gamesOwned=[]) {
+function nonVal(elem, text, color="red") {
+    elem.style.display = "block";
+    elem.textContent = text;
+    elem.style.color=color;
+}
+
+function createUser (username, email, password, gamesOwned=[]) {
     return {username:username, password:password, email:email, gamesOwned:gamesOwned};
 }
 
@@ -43,10 +58,60 @@ function checkUsername(username, users) {
     return true;
 }
 
-function nonVal(elem, text) {
-    elem.style.display = "block";
-    elem.textContent = text;
+function checkEmail(email, users) {
+    for (let user of users) {
+        if (email == user.email) {
+            return false;
+        }
+    }
+    return true;
 }
+
+function isPasswordSuitable(password) {
+    // Minimum length requirement
+    const minLength = 8;
+
+    // Regular expressions for required character types
+    const hasUppercase = /[A-Z]/;
+    const hasLowercase = /[a-z]/;
+    const hasDigit = /\d/;
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/;
+
+    // Check password against rules
+    if (password.length < minLength) {
+        return "Password must be at least 8 characters long.";
+    }
+    if (!hasUppercase.test(password)) {
+        return "Password must include at least one uppercase letter.";
+    }
+    if (!hasLowercase.test(password)) {
+        return "Password must include at least one lowercase letter.";
+    }
+    if (!hasDigit.test(password)) {
+        return "Password must include at least one digit.";
+    }
+    if (!hasSpecialChar.test(password)) {
+        return "Password must include at least one special character.";
+    }
+
+    // If all checks pass
+    return true;
+}
+
+function checkPassword(event){
+    password = document.getElementById("passwordS").value;
+    let isValid = isPasswordSuitable(password);
+    const not_valid = document.getElementById('not_valid_passwordS');
+    if (isValid === true){
+        nonVal(not_valid, "Password is suitable", "green");
+        return;
+    }
+    nonVal(not_valid, isValid);
+}
+
+
+
+
 
 function loggedIn(username){
     sessionStorage.setItem('loggedIn', 'true');
@@ -61,13 +126,30 @@ function signup(event) {
     const email = document.getElementById('emailS').value;
     const password = document.getElementById('passwordS').value;
 
-    const not_valid = document.getElementById('not_validS');
+    const not_valid_username = document.getElementById('not_valid_usernameS');
+    not_valid_username.style.display = "none";
     if (!checkUsername(username, users)){
-        nonVal(not_valid, "Username already exists");
+        nonVal(not_valid_username, "Username already exists");
+        return;
+    }
+    const not_valid_email = document.getElementById('not_valid_emailS');
+    not_valid_email.style.display = "none";
+    if (!checkEmail(email, users)){
+        nonVal(not_valid_email, "An account is already registered to this email");
         return;
     }
 
-    const newUser = createUser(username, email, password);
+    const not_valid_password = document.getElementById('not_valid_passwordS');
+    not_valid_password.style.display = "none";
+    let isPassValid = isPasswordSuitable(password);
+    console.log(isPassValid);
+    if (!(isPassValid===true)){
+        nonVal(not_valid_password, isPassValid);
+        return;
+    }
+
+
+    const newUser = createUser(username, email, customHash(password));
     let succeeded = addUser(newUser);
     if(!succeeded){
         nonVal(not_valid, "Error creating user, try again later")
@@ -89,7 +171,7 @@ function login(event) {
     const not_valid = document.getElementById('not_validL');
     for (let user of users) {
         if (user.username == username) {
-            if (user.password == password){
+            if (user.password == customHash(password)){
                 loggedIn(username);
                 return;
             }
@@ -127,6 +209,7 @@ signupForm.addEventListener('submit', signup);
 
 document.getElementById('SwitchToSign').addEventListener('click', switchToSignup);
 document.getElementById('SwitchToLog').addEventListener('click', switchToLogin);
+document.getElementById('passwordS').addEventListener("input", checkPassword)
 
 
 // Check if the user is already logged in

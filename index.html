@@ -9,7 +9,9 @@
 </head>
 <body>
     <div class="background">
-        <h1>Fake Steam</h1>
+        <div class="title">
+            <h1>Fake Steam</h1>
+        </div>
         <div class="login" id="login">
             <form id="loginForm" method="post">
                 <input type="text" id="usernameL" name="username" placeholder="username" required>
@@ -22,9 +24,11 @@
         <div class="signup" id="signup">
             <form id="signupForm" method="post">
                 <input type="text" id="usernameS" name="username" placeholder="username" required>
-                <p class="not_valid" id="not_validS"></p>
+                <p class="not_valid" id="not_valid_usernameS"></p>
                 <input type="email" id="emailS" name="email" placeholder="example@example.com" required>
+                <p class="not_valid" id="not_valid_emailS"></p>
                 <input type="password" id="passwordS" name="password" placeholder="password" required>
+                <p class="not_valid" id="not_valid_passwordS"></p>
                 <input type="submit" value="Sign-up">
             </form>
             <h3>Have an account? <a href="#" id="SwitchToLog">Log-in</a> now!</h3> 
