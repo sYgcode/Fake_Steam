@@ -3,13 +3,11 @@ const User = {
     password: "pass",
     email: "1",
     age: 5,
-    gamesOwned: ['fallingfrenzy', 'Game 3'],
-}
-
-
+    gamesOwned: ['Falling Frenzy', 'Game 3'],
+};
 
 function initializeUserArray() {
-    const users = localStorage.getItem('User');
+    const users = localStorage.getItem('Users');
     if (!users) {
         localStorage.setItem('Users', JSON.stringify([]));
         users = localStorage.getItem('User');
