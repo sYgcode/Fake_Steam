@@ -2,7 +2,8 @@ const User = {
     username: "shua",
     password: "pass",
     email: "1",
-    age: 5
+    age: 5,
+    gamesOwned: ['fallingfrenzy', 'Game 3'],
 }
 
 
@@ -22,7 +23,7 @@ function addUser(newUser) {
     // Append the example user if not already in the array
     if (!users.some(user => user.username === newUser.username)) {
         users.push(newUser);
-        localStorage.setItem('User', JSON.stringify(users));
+        localStorage.setItem('Users', JSON.stringify(users));
         console.log('Example user added:', newUser);
     } else {
         console.log('Example user already exists:', newUser);
@@ -45,6 +46,8 @@ function login(event) {
             if (user.password == password){
                 alert("Logged In");
                 sessionStorage.setItem('loggedIn', 'true');
+                sessionStorage.setItem('username', username);
+                console.log(sessionStorage.getItem('username'));
                 window.location.href = '/html/main-page.html';
                 return;
             }

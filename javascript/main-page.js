@@ -1,16 +1,20 @@
 const playButtons = document.querySelectorAll('.play-button');
 const playPreview = document.querySelector('#play-preview-modal');
-const body = document.body;
-
+const seeMore = document.querySelectorAll('.more');
 const closeButton = document.querySelector("#close-button");
+
+const username = sessionStorage.getItem('username');
+const gamesOwned = JSON.parse(localStorage.getItem('Users')).find(user => user.username === username).gamesOwned;
+console.log(gamesOwned);
+
 closeButton.textContent = "Close Game";
 closeButton.addEventListener("click", () => {
     playPreview.style.top = "-100vh";
-    body.classList.remove("dimmed");
+    document.body.classList.remove("dimmed");
 });
 
 function startModal(iframeName) {
-    body.classList.add('dimmed');
+    document.body.classList.add('dimmed');
     playPreview.style.top = "0";
     playPreview.querySelector('iframe').src = `games/${iframeName}.html`;
 }
@@ -21,4 +25,8 @@ playButtons.forEach(button => {
     const iframeName = gameName.replace(/\s/g, '').toLowerCase();
 
     button.addEventListener('click', () => { startModal(iframeName); });
+});
+
+seeMore.forEach(button => {
+    button.addEventListener('click', () => { window.location.href = '/html/games.html'; });
 });

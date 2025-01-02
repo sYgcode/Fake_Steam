@@ -26,10 +26,10 @@ h3 {
 }
 
 #newest-games-container, #favorite-games-container {
-    border: 5px solid #2E2E2E;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
-    background: #2f2f2f30;
-    padding-bottom: 20px;
+    padding: 20px 0 60px;
 }
 
 #newest-games, #favorite-games {
@@ -37,7 +37,23 @@ h3 {
     flex-direction: row;
     gap: 40px;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-evenly;
+}
+
+.more {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    border-radius: 5px;
+    width: fit-content;
+    padding: 10px;
+    background-color: #1F8A70;
+    transition: background-color 0.3s ease;
+}
+
+.more:hover {
+    background-color: #3BAF8E;
+    cursor: pointer;
 }
 
 .game {
