@@ -36,10 +36,10 @@ function login(event) {
 
     const users = initializeUserArray();
 
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+    const username = document.getElementById('usernameL').value;
+    const password = document.getElementById('passwordL').value;
 
-    const not_valid = document.getElementById('not_valid');
+    const not_valid = document.getElementById('not_validL');
     for (let user of users) {
         if (user.username == username) {
             if (user.password == password){

@@ -52,34 +52,44 @@ footer iframe {
     margin-bottom: 0;
 }
 
-.login form{
+form{
     display: flex;
     flex-direction: column;
 }
+.login {
+    form input[type=text], form input[type=password] {
+        width: 100%;
+        margin: 8px 0;
+        box-sizing: border-box;
+        
+    }
 
-.login form input[type=text], .login form input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border-color: #1B1B1B;
-    border: 2px solid;
+    form input{
+        font-size: 1.3em;
+        border-radius: 0.6em;
+        border-color: #1B1B1B;
+        border: 2px solid;
+    }
+
+    button, input[type=submit] {
+        background-color: #1F8A70;
+        color: #E5E5E5;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+        cursor: pointer;
+    }
 }
 
-.login form input{
-    font-size: 1.3em;
-    border-radius: 0.6em;
-    
-}
-
-button, input[type=submit] {
-    background-color: #1F8A70;
-    color: #E5E5E5;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    cursor: pointer;
+.signup {
+    form input{
+        font-size: 1.3em;
+        border-radius: 0.6em;
+        padding: 12px 20px;
+        border-color: #1B1B1B;
+        border: 2px solid;
+    }
 }
 
 button:hover, input[type=submit]:hover {
