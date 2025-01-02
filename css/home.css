@@ -103,3 +103,11 @@ h3 {
     font-size: medium;
     margin-top: 5px;
 }
+
+
+#not_valid{
+    margin: 0;
+    font-size: 0;
+    margin-left: 0.3em;
+    color: red;
+}
