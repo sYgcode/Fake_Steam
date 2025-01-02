@@ -1,4 +1,4 @@
-const User = {
+const exampleUser = {
     username: "shua",
     password: "pass",
     email: "1",
@@ -7,11 +7,11 @@ const User = {
 }
 
 
-
+// function to retrieve 
 function initializeUserArray() {
-    const users = localStorage.getItem('User');
+    const users = localStorage.getItem('users');
     if (!users) {
-        localStorage.setItem('User', JSON.stringify([]));
+        localStorage.setItem('users', JSON.stringify([]));
         users = localStorage.getItem('User');
     }
 
@@ -30,7 +30,7 @@ function addUser(newUser) {
     }
 }
 
-addUser(User);
+addUser(exampleUser);
 
 function login(event) {
     event.preventDefault();
@@ -66,6 +66,7 @@ function login(event) {
 
 const loginForm = document.getElementById('loginForm');
 loginForm.addEventListener('submit', login);
+
 
 // Check if the user is already logged in
 if (sessionStorage.getItem('loggedIn') === 'true') {
