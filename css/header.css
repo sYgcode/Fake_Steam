@@ -11,6 +11,10 @@ body {
     padding: 10px 0;
 }
 
+#navbar #user-profile {
+    margin-left: 20px;
+}
+
 #navbar #search-bar input {
     height: 36px;
     border-radius: 5px;

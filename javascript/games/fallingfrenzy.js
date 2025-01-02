@@ -3,6 +3,7 @@ const gameScore = document.getElementById('score');
 const obstacles = document.querySelector('#obstacles');
 const player = document.getElementById('player');
 const restartButton = document.getElementById('restart-game');
+const gameTimeout = [];
 
 let tickRate = 30,
     keyDown = {},
@@ -107,6 +108,7 @@ function restartGame() {
     gameTimeout.push(setInterval(gameLoop, 1000 - Math.min(score * 10, 800)));
     clearInterval(fallInterval);
     fallInterval = setInterval(dropObjects, 20);
+    restartButton.textContent = 'Restart Game';
 }
 
 function gameLoop() {
@@ -118,5 +120,3 @@ function gameLoop() {
 }
 
 restartButton.addEventListener('click', restartGame);
-
-const gameTimeout = [setInterval(gameLoop, 1000 - Math.min(score * 10, 800))];
