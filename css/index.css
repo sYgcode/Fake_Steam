@@ -1,0 +1,46 @@
+form{
+    display: flex;
+    flex-direction: column;
+    input{
+        width: 100%;
+        max-width: 280px; /* Ensures the error message doesn't exceed the width of the form */
+        font-size: 1.3em;
+        border-radius: 0.6em;
+        padding: 12px 20px;
+        border-color: #1B1B1B;
+        border: 2px solid;
+        margin: 8px 0;
+        box-sizing: border-box;
+        outline: none;
+    }
+}
+
+.login {
+    min-height: 220px;
+}
+
+.signup {
+    display: none;
+    min-height: 300px;
+}
+
+h3 {
+    text-align: center;
+    color: black;
+    font-size: medium;
+    margin-top: 5px;
+}
+.not_valid{
+    display: flex;
+    text-align: left;
+    margin: 0;
+    padding: 2px; /* Adds slight padding to prevent alignment shift */
+    font-size: 0.9em;
+    width: 100%;
+    max-width: 280px; /* Ensures the error message doesn't exceed the width of the form */
+    color: red;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word; /* Ensures long words wrap within the container */
+    box-sizing: border-box;
+}
