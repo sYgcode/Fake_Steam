@@ -11,7 +11,7 @@ const User = {
 function initializeUserArray() {
     const users = localStorage.getItem('User');
     if (!users) {
-        localStorage.setItem('User', JSON.stringify([]));
+        localStorage.setItem('Users', JSON.stringify([]));
         users = localStorage.getItem('User');
     }
 

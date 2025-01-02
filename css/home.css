@@ -72,6 +72,7 @@ button, input[type=submit] {
     background-color: #1F8A70;
     color: #E5E5E5;
     border: none;
+    border-radius: 0.6em;
     padding: 10px 20px;
     transition: background-color 0.3s ease;
     cursor: pointer;

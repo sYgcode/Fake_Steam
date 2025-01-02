@@ -44,7 +44,7 @@ h3 {
     position: absolute;
     right: 10px;
     bottom: 10px;
-    border-radius: 5px;
+    border-radius: 0.6em;
     width: fit-content;
     padding: 10px;
     background-color: #1F8A70;
