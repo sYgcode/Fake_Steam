@@ -190,26 +190,39 @@ function switchToLogin(event){
     event.preventDefault() 
     document.getElementById('signup').style.display = "none";
     document.getElementById('login').style.display = "block";
+    document.getElementById('SwitchToSign').addEventListener('click', switchToSignup);
+    document.getElementById('SwitchToLog').removeEventListener('click', switchToLogin);
+    document.getElementById('passwordS').removeEventListener("input", checkPassword);
+    document.getElementById('signupForm').removeEventListener('submit', signup);
 }
 
 function switchToSignup(event){
     event.preventDefault() 
     document.getElementById('login').style.display = "none";
     document.getElementById('signup').style.display = "block";
+    document.getElementById('SwitchToLog').addEventListener('click', switchToLogin);
+    document.getElementById('signupForm').addEventListener('submit', signup);
+    document.getElementById('passwordS').addEventListener("input", checkPassword);
+    document.getElementById('SwitchToSign').removeEventListener('click', switchToSignup);
+    document.getElementById('loginForm').removeEventListener('submit', login);
+}
+
+function playMusic(){
+    // Play the audio
+    document.removeEventListener('click', playMusic);
+    audio.loop = true;
+    audio.play().catch(error => {
+        console.error('Error playing audio:', error);
+    });
 }
 
 
-
 // code
-const loginForm = document.getElementById('loginForm');
-loginForm.addEventListener('submit', login);
-const signupForm = document.getElementById('signupForm');
-signupForm.addEventListener('submit', signup);
+document.getElementById('loginForm').addEventListener('submit', login);
 
 
 document.getElementById('SwitchToSign').addEventListener('click', switchToSignup);
-document.getElementById('SwitchToLog').addEventListener('click', switchToLogin);
-document.getElementById('passwordS').addEventListener("input", checkPassword)
+document.addEventListener('click', playMusic);
 
 
 // Check if the user is already logged in
@@ -217,3 +230,5 @@ if (sessionStorage.getItem('loggedIn') === 'true') {
     // Redirect directly if they revisit the home page
     window.location.href = '/html/main-page.html';
 }
+
+const audio = new Audio('assets/audio/background_music.mp3');
