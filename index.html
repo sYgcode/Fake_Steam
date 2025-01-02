@@ -10,23 +10,24 @@
 <body>
     <div class="background">
         <h1>Fake Steam</h1>
-        <div class="login" style="display: none">
-            <form id="loginForm">
+        <div class="login" id="login">
+            <form id="loginForm" method="post">
                 <input type="text" id="usernameL" name="username" placeholder="username" required>
-                <p id="not_validL" style="display: none;"></p>
+                <p class="not_valid" id="not_validL"></p>
                 <input type="password" id="passwordL" name="password" placeholder="password" required>
                 <input type="submit" value="Login">
             </form>
-            <h3>Don't have an account? <a href="#">Sign-up</a> now!</h3>
+            <h3>Don't have an account? <a href="#" id="SwitchToSign">Sign-up</a> now!</h3>
         </div>
-        <div class="signup">
-            <form id="signupForm">
+        <div class="signup" id="signup">
+            <form id="signupForm" method="post">
                 <input type="text" id="usernameS" name="username" placeholder="username" required>
+                <p class="not_valid" id="not_validS"></p>
                 <input type="email" id="emailS" name="email" placeholder="example@example.com" required>
                 <input type="password" id="passwordS" name="password" placeholder="password" required>
                 <input type="submit" value="Sign-up">
             </form>
-            <h3>Have an account? <a href="#">Log-in</a> now!</h3> 
+            <h3>Have an account? <a href="#" id="SwitchToLog">Log-in</a> now!</h3> 
         </div>
     </div>
 </body>
