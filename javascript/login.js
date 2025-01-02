@@ -52,6 +52,7 @@ function login(event) {
                 return;
             }
             else {
+                not_valid.style.display = "block";
                 not_valid.style.fontSize = '1em';
                 not_valid.textContent = "Username and password don't match"
                 return;

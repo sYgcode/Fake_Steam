@@ -10,10 +10,10 @@
 <body>
     <div class="background">
         <h1>Fake Steam</h1>
-        <div class="login" style="display: none;">
+        <div class="login" style="display: none">
             <form id="loginForm">
                 <input type="text" id="usernameL" name="username" placeholder="username" required>
-                <p id="not_validL"></p>
+                <p id="not_validL" style="display: none;"></p>
                 <input type="password" id="passwordL" name="password" placeholder="password" required>
                 <input type="submit" value="Login">
             </form>
@@ -23,11 +23,13 @@
             <form id="signupForm">
                 <input type="text" id="usernameS" name="username" placeholder="username" required>
                 <input type="email" id="emailS" name="email" placeholder="example@example.com" required>
+                
                 <input type="password" id="passwordS" name="password" placeholder="password" required>
-                <input type="range" min="1" max="120" value="18" id="ageS" name="age" required>
+                <label for="ageS">Age:</label>
+                <input type="range" min="1" max="120" value="18" id="ageS" name="age" class="slider" required>
                 <input type="submit" value="Sign-up">
             </form>
-            <h3>Have an account? <a href="#">Log-in</a> now!</h3>
+            <h3>Have an account? <a href="#">Log-in</a> now!</h3> 
         </div>
     </div>
 </body>
