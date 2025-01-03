@@ -1,4 +1,4 @@
-body {
+/* body {
     height: 56px;
 }
 
@@ -15,14 +15,61 @@ body {
     margin-left: 20px;
 }
 
-#navbar #search-bar input {
-    height: 36px;
-    border-radius: 5px;
+
+
+
+} */
+
+
+body {
+    height: 56px;
+}
+
+#navbar {
+    background-color: #333;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
 }
 
 #navbar #nav-buttons {
     display: flex;
-    margin-right: 20px;
+    margin-left: 20px;
     justify-content: space-around;
     gap: 30px;
+    #logo {
+        max-width: 36px;
+    }
+}
+
+
+#navbar #search-bar input {
+    height: 36px;
+    border-radius: 5px;
+}
+#navbar #user-profile {
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1em;
+}
+
+#user-welcome {
+    vertical-align: middle;
+}
+
+#navbar #user-profile #profile_holder {
+    max-height: 36px;
+    max-width: 36px;
+    margin-right: 0.8em;
+    overflow: hidden;
+    border: 2px solid;
+    border-radius: 50%;
+    .profile {
+        max-height: 36px;
+        object-fit: cover;
+    }
 }

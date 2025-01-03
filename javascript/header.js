@@ -1,5 +1,5 @@
-const userProfile = document.getElementById('user-profile');
+const userProfileWelcome = document.getElementById('user-welcome');
 const username = sessionStorage.getItem('username');
 console.log(username);
 
-userProfile.textContent = `Hello, ${username}!`;
+userProfileWelcome.textContent = `Hello, ${username}!`;
