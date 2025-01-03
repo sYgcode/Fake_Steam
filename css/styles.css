@@ -2,6 +2,7 @@
     box-sizing: border-box;
 }
 
+
 body {
     margin: 0;
     padding: 0;
@@ -40,21 +41,6 @@ footer iframe {
     height: 100%;
 }
 
-.background {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.background h1 {
-    text-transform: uppercase;
-    font-size: 4em;
-    padding-bottom: 0;
-    margin-bottom: 0;
-}
 
 
 

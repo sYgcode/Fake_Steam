@@ -26,9 +26,12 @@ form{
 
 h3 {
     text-align: center;
-    color: black;
+    color: white;
     font-size: medium;
     margin-top: 5px;
+    a {
+        color: lightblue;
+    }
 }
 .not_valid{
     display: flex;
@@ -43,4 +46,29 @@ h3 {
     word-wrap: break-word;
     overflow-wrap: break-word; /* Ensures long words wrap within the container */
     box-sizing: border-box;
+}
+
+.music_icon {
+    max-height: 80px;
+    display: flex;
+    position: absolute;
+    top: 1em;
+    right: 2em;
+    z-index: 1000; /* Ensure it's above other elements */
+    pointer-events: auto; /* Ensure it is clickable */
+    cursor: pointer; /* Makes it clear that it's clickable */
+}
+
+.logo {
+    max-height: 20em;
+}
+
+.content-container {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transform: translateY(-50px);
 }

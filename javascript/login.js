@@ -207,13 +207,39 @@ function switchToSignup(event){
     document.getElementById('loginForm').removeEventListener('submit', login);
 }
 
-function playMusic(){
+function playMusic(event){
+    event.preventDefault();
+    const isMusicPlaying = sessionStorage.getItem("isMusicPlaying");
+    let music_icon = document.getElementById("music_icon");
+    if (isMusicPlaying === 'true'){
+        audio.pause();
+        music_icon.src = "/assets/images/sound_off.png";
+        sessionStorage.setItem("isMusicPlaying", "false");
+    }
+    else{
+        audio.play().catch(error => {
+            console.error('Error playing audio:', error);
+            music_icon.src = "/assets/images/sound_off.png";
+            return;
+        });
+        music_icon.src = "/assets/images/sound_on.png";
+        sessionStorage.setItem("isMusicPlaying", "true");
+    }
+
+}
+
+function playMusicOnStart(){
     // Play the audio
-    document.removeEventListener('click', playMusic);
+    document.removeEventListener('click', playMusicOnStart);
+    let music_icon = document.getElementById("music_icon");
+    music_icon.addEventListener('click', playMusic);
     audio.loop = true;
     audio.play().catch(error => {
         console.error('Error playing audio:', error);
+        music_icon.src = "/assets/images/sound_off.png";
+        return;
     });
+    sessionStorage.setItem('isMusicPlaying', 'true');
 }
 
 
@@ -222,7 +248,7 @@ document.getElementById('loginForm').addEventListener('submit', login);
 
 
 document.getElementById('SwitchToSign').addEventListener('click', switchToSignup);
-document.addEventListener('click', playMusic);
+document.addEventListener('click', playMusicOnStart);
 
 
 // Check if the user is already logged in
