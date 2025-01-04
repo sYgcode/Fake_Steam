@@ -1,20 +1,21 @@
 const playButtons = document.querySelectorAll('.play-button');
 const buyButtons = document.querySelectorAll('.buy-button');
 const playPreview = document.querySelector('#play-preview-modal');
+const previewTitle = document.querySelector(".modal h3");
 const gameIframe = playPreview.querySelector('#game-frame');
 const seeMore = document.querySelectorAll('.more');
 const closeButton = document.querySelector("#close-button");
 
-const gameList = {'Falling Frenzy':'fallingfrenzy'}
+const gameList = {'Falling Frenzy':'fallingfrenzy'} // Relation between game name and iframe name
 const username = sessionStorage.getItem('username');
 const gamesOwned = JSON.parse(localStorage.getItem('users')).find(user => user.username === username).gamesOwned;
-console.log(gamesOwned);
 
 closeButton.textContent = "Close Game";
 closeButton.addEventListener("click", () => {
     playPreview.style.top = "-100vh";
     document.body.classList.remove("dimmed");
     gameIframe.src = "";
+    previewTitle.textContent = "Game Preview";
 });
 
 function startModal(iframeName) {
@@ -40,7 +41,11 @@ playButtons.forEach(button => {
     const gameName = button.parentElement.previousElementSibling.previousElementSibling.textContent;
     const iframeName = gameList[gameName];
 
-    button.addEventListener('click', () => { startModal(iframeName); });
+    button.addEventListener('click', () => {
+        if (gamesOwned.includes(gameName)) 
+            previewTitle.textContent = gameName;
+        startModal(iframeName);
+    });
 
     if (gamesOwned.includes(gameName)) { ownedGame(button); }
 });
