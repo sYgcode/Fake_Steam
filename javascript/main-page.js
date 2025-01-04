@@ -7,8 +7,7 @@ const closeButton = document.querySelector("#close-button");
 
 const gameList = {'Falling Frenzy':'fallingfrenzy'}
 const username = sessionStorage.getItem('username');
-// const gamesOwned = JSON.parse(localStorage.getItem('Users')).find(user => user.username === username).gamesOwned;
-const gamesOwned = ['Falling Frenzy', 'Game 3'];
+const gamesOwned = JSON.parse(localStorage.getItem('users')).find(user => user.username === username).gamesOwned;
 console.log(gamesOwned);
 
 closeButton.textContent = "Close Game";
@@ -23,13 +22,17 @@ function startModal(iframeName) {
     playPreview.style.top = "0";
 
     if (iframeName === undefined) {
-        alert("No preview available for this game.");
         gameIframe.src = "games/no-preview-available.html";
         return;
     }
     else {
         gameIframe.src = `games/${iframeName}.html`;
     }
+}
+
+function ownedGame(button) {
+    button.textContent = "Play";
+    button.style.width = "200px";
 }
 
 playButtons.forEach(button => {
@@ -39,14 +42,26 @@ playButtons.forEach(button => {
 
     button.addEventListener('click', () => { startModal(iframeName); });
 
-    if (gamesOwned.includes(gameName)) {
-        button.textContent = "Play";
-        button.style.width = "200px";
-    }
+    if (gamesOwned.includes(gameName)) { ownedGame(button); }
 });
+
+function buyGame(gameName, button) {
+    gamesOwned.push(gameName);
+
+    const users = JSON.parse(localStorage.getItem('users'));
+    const userIndex = users.findIndex(user => user.username === username);
+    users[userIndex].gamesOwned = gamesOwned;
+    localStorage.setItem('users', JSON.stringify(users));
+
+    button.style.display = "none";
+    const playButton = button.nextElementSibling;
+    ownedGame(playButton);
+}
 
 buyButtons.forEach(button => {
     const gameName = button.parentElement.previousElementSibling.previousElementSibling.textContent;
+
+    button.addEventListener('click', () => { buyGame(gameName, button); });
 
     if (gamesOwned.includes(gameName)) {
         button.style.display = "none";
@@ -56,8 +71,6 @@ buyButtons.forEach(button => {
 seeMore.forEach(button => {
     button.addEventListener('click', () => { window.location.href = '/html/games.html'; });
 });
-
-
 
 // Check if the user is not logged in yet
 if (sessionStorage.getItem('loggedIn') === 'false' || sessionStorage.getItem('loggedIn') === null) {

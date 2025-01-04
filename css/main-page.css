@@ -19,14 +19,14 @@ h3 {
     font-size: 1.5em;
 }
 
-#newest-games-container, #favorite-games-container {
+.games-container {
     position: relative;
     background-color: rgba(255, 255, 255, 0.05);
     border-radius: 10px;
     padding: 20px 0 60px;
 }
 
-#newest-games, #favorite-games {
+.games-list {
     display: flex;
     flex-direction: row;
     gap: 40px;
