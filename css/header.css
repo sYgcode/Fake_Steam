@@ -62,13 +62,15 @@ body {
     vertical-align: middle;
 }
 
-#navbar #user-profile #profile_holder {
+#navbar #user-profile #profile-holder {
     max-height: 36px;
     max-width: 36px;
     margin-right: 0.8em;
     overflow: hidden;
     border: 2px solid;
     border-radius: 50%;
+    cursor: pointer;
+
     .profile {
         max-height: 36px;
         object-fit: cover;

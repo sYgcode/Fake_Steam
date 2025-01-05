@@ -89,6 +89,7 @@ function endGame() {
     isRunning = false;
     keyDown = {};
     alert(`Game Over! Score: ${score}`);
+    console.log(score, (new Date()).toLocaleString());
     const retry = confirm('Retry?');
     if (retry) {
         restartGame();
