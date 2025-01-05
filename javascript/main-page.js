@@ -38,7 +38,7 @@ function ownedGame(button) {
 
 playButtons.forEach(button => {
     // Find the game name by traversing the DOM and locating the h4 element that contains the game name
-    const gameName = button.parentElement.previousElementSibling.previousElementSibling.textContent;
+    const gameName = button.parentElement.previousElementSibling.firstElementChild.textContent;
     const iframeName = gameList[gameName];
 
     button.addEventListener('click', () => {
@@ -64,7 +64,7 @@ function buyGame(gameName, button) {
 }
 
 buyButtons.forEach(button => {
-    const gameName = button.parentElement.previousElementSibling.previousElementSibling.textContent;
+    const gameName = button.parentElement.previousElementSibling.firstElementChild.textContent;
 
     button.addEventListener('click', () => { buyGame(gameName, button); });
 

@@ -87,6 +87,7 @@ function checkCollision(player, obstacle) {
 
 function endGame() {
     isRunning = false;
+    keyDown = {};
     alert(`Game Over! Score: ${score}`);
     const retry = confirm('Retry?');
     if (retry) {
@@ -104,7 +105,6 @@ function restartGame() {
         clearInterval(gameTimeout[i]);
         gameTimeout.pop();
     }
-    keyDown = {};
     gameTimeout.push(setInterval(gameLoop, 1000 - Math.min(score * 10, 800)));
     clearInterval(fallInterval);
     fallInterval = setInterval(dropObjects, 20);
