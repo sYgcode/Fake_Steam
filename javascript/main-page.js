@@ -6,7 +6,7 @@ const gameIframe = playPreview.querySelector('#game-frame');
 const seeMore = document.querySelectorAll('.more');
 const closeButton = document.querySelector("#close-button");
 
-const gameList = {'Falling Frenzy':'fallingfrenzy'} // Relation between game name and iframe name
+const gameList = {'Falling Frenzy':'fallingfrenzy', 'Tic-Tac-Toe':'tictactoe'} // Relation between game name and iframe name
 const username = sessionStorage.getItem('username');
 const gamesOwned = JSON.parse(localStorage.getItem('users')).find(user => user.username === username).gamesOwned;
 
