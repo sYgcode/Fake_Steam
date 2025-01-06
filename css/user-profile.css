@@ -66,6 +66,7 @@
 .game-thumbnail {
     width: 80px;
     height: 80px;
+    object-fit: cover;
     border-radius: 5px;
     margin-right: 20px;
 }

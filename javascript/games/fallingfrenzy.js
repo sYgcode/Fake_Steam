@@ -5,6 +5,10 @@ const player = document.getElementById('player');
 const restartButton = document.getElementById('restart-game');
 const gameTimeout = [];
 
+const startTime = new Date();
+
+let timePlayed = localStorage.getItem('users').find(user => user.username === username).games["Falling Frenzy"].timePlayed;
+
 let tickRate = 30,
     keyDown = {},
     keyMap = {
@@ -87,6 +91,7 @@ function checkCollision(player, obstacle) {
 
 function endGame() {
     isRunning = false;
+    const timePlayed = timePlayed + (new Date() - startTime) / 1000;
     keyDown = {};
     alert(`Game Over! Score: ${score}`);
     console.log(score, (new Date()).toLocaleString());
@@ -97,6 +102,7 @@ function endGame() {
 }
 
 function restartGame() {
+    startTime = new Date();
     isRunning = true;
     score = 0;
     obstacles.innerHTML = '';
