@@ -1,7 +1,8 @@
 // Get the search query from the URL
 const urlParams = new URLSearchParams(window.location.search);
 const games = document.querySelectorAll(".game"); // Select all game elements
-const query = urlParams.get('search');
+
+let query = urlParams.get('search');
 
 
 function filterGames(query) {

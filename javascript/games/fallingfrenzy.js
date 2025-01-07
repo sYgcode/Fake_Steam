@@ -8,7 +8,6 @@ const gameTimeout = [];
 const users = JSON.parse(localStorage.getItem('users'));
 const userIndex = users.findIndex(user => user.username === sessionStorage.getItem('username'));
 let userGame = JSON.parse(JSON.parse(users[userIndex].gamesOwned)["FallingFrenzy"]);
-console.log(userGame);
 
 let tickRate = 30,
     keyDown = {},
@@ -91,21 +90,22 @@ function checkCollision(player, obstacle) {
 }
 
 function updateMemory() {
-    userGame.timePlayed = userGame.timePlayed + new Date();
+    userGame.timePlayed = userGame.timePlayed + Date.now();
     userGame.lastPlayed = new Date();
     userGame.highScore.time = userGame.highScore.score > score ? userGame.highScore.time : (new Date()).toLocaleString();
-    userGame.highScore.score = Math.max(userGame.highScore, score);
+    console.log(userGame.highScore.time);
+    userGame.highScore.score = Math.max(userGame.highScore.score, score);
 
-    users[userIndex].gamesOwned["Falling Frenzy"] = userGame;
+    users[userIndex].gamesOwned = JSON.parse(users[userIndex].gamesOwned);
+    users[userIndex].gamesOwned["FallingFrenzy"] = JSON.stringify(userGame);
+    users[userIndex].gamesOwned = JSON.stringify(users[userIndex].gamesOwned);
     localStorage.setItem('users', JSON.stringify(users));
-    console.log(users);
 }
 
 function endGame() {
     isRunning = false;
     keyDown = {};
     alert(`Game Over! Score: ${score}`);
-    // console.log(userGame.timePlayed, score, (new Date()).toLocaleString());
     updateMemory();
     const retry = confirm('Retry?');
     if (retry) {
@@ -115,7 +115,7 @@ function endGame() {
 
 function restartGame() {
     console.log(users);
-    userGame.timePlayed = userGame.timePlayed - new Date();
+    userGame.timePlayed = userGame.timePlayed - Date.now();
     isRunning = true;
     score = 0;
     obstacles.innerHTML = '';
