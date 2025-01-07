@@ -8,7 +8,7 @@ const closeButton = document.querySelector("#close-button");
 
 const gameList = {'Falling Frenzy':'fallingfrenzy', 'Tic-Tac-Toe':'tictactoe'} // Relation between game name and iframe name
 const username = sessionStorage.getItem('username');
-const gamesOwned = JSON.parse(localStorage.getItem('users')).find(user => user.username === username).gamesOwned;
+const gamesOwned = JSON.parse(JSON.parse(localStorage.getItem('users')).find(user => user.username === username).gamesOwned);
 
 closeButton.textContent = "Close Game";
 closeButton.addEventListener("click", () => {
@@ -42,21 +42,25 @@ playButtons.forEach(button => {
     const iframeName = gameList[gameName];
 
     button.addEventListener('click', () => {
-        if (gamesOwned.includes(gameName)) 
+        if (Object.keys(gamesOwned).includes(gameName)) 
             previewTitle.textContent = gameName;
         startModal(iframeName);
     });
 
-    if (gamesOwned.includes(gameName)) { ownedGame(button); }
+    if (Object.keys(gamesOwned).includes(gameName)) { ownedGame(button); }
 });
 
 function buyGame(gameName, button) {
-    gamesOwned.push(gameName);
-
+    Object.defineProperty(gamesOwned, gameName, { value: { timePlayed: 0, lastPlayed: new Date(), highScore: { score: 0, time: new Date() } } });
+    
     const users = JSON.parse(localStorage.getItem('users'));
     const userIndex = users.findIndex(user => user.username === username);
-    users[userIndex].gamesOwned = gamesOwned;
+    users[userIndex].gamesOwned = JSON.parse(users[userIndex].gamesOwned);
+    users[userIndex].gamesOwned[gameName] = JSON.stringify(gamesOwned[gameName]);
+    users[userIndex].gamesOwned = JSON.stringify(users[userIndex].gamesOwned);
     localStorage.setItem('users', JSON.stringify(users));
+    console.log(JSON.parse(localStorage.getItem('users')));
+
 
     button.style.display = "none";
     const playButton = button.nextElementSibling;
@@ -64,11 +68,11 @@ function buyGame(gameName, button) {
 }
 
 buyButtons.forEach(button => {
-    const gameName = button.parentElement.previousElementSibling.firstElementChild.textContent;
+    const gameName = button.parentElement.previousElementSibling.firstElementChild.textContent.replace(/\s/g, '');
 
     button.addEventListener('click', () => { buyGame(gameName, button); });
 
-    if (gamesOwned.includes(gameName)) {
+    if (Object.keys(gamesOwned).includes(gameName)) {
         button.style.display = "none";
     }
 });

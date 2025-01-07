@@ -2,7 +2,11 @@ const exampleUser = {
     username: "shua",
     password: "pass",
     email: "1",
-    gamesOwned: ['fallingfrenzy', 'Game 3'],
+    profilePicture: "profile-holder.png",
+    gamesOwned: {
+        FallingFrenzy: { timePlayed: 0, lastPlayed: new Date(), highScore: { score: 0, time: new Date() } },
+        Game3: { timePlayed: 0, lastPlayed: new Date(), highScore: { score: 0, time: new Date() } }
+    }
 }
 
 
@@ -32,7 +36,7 @@ function nonVal(elem, text, color="red") {
     elem.style.color=color;
 }
 
-function createUser (username, email, password, gamesOwned=[]) {
+function createUser (username, email, password, gamesOwned=JSON.stringify({})) {
     return {username:username, password:password, email:email, gamesOwned:gamesOwned};
 }
 

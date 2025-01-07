@@ -6,6 +6,8 @@
     <title>User Profile - Fake Steam</title>
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/user-profile.css">
+    <link rel="icon" type="image/favicon.svg" href="../assets/favicon.svg">
+    <script src="../javascript/user-profile.js" defer></script>
 </head>
 <body>
     <nav>
@@ -15,44 +17,19 @@
     <main>
         <div class="profile-page">
             <!-- Header -->
-            <header class="profile-header">
-                <div class="profile-picture">
-                    <div class="placeholder">?</div>
+            <header id="profile-header">
+                <div id="profile-picture">
+                    <img src="" id="placeholder">
                 </div>
-                <div class="profile-info">
-                    <h1 class="username">dvirfa1</h1>
-                    <p class="bio"></p>
+                <div id="profile-info">
+                    <h1 id="username"></h1>
+                    <p id="email"></p>
                 </div>
             </header>
     
             <!-- Recent Activity -->
-            <section class="recent-activity">
+            <section id="recent-activity">
                 <h2>Recent Activity</h2>
-                <div class="activity-item">
-                    <img src="../assets/images/Falling Frenzy1.jpeg" alt="Celeste" class="game-thumbnail">
-                    <div class="activity-info">
-                        <p class="game-title">Celeste</p>
-                        <p class="play-time">62 hrs on record</p>
-                        <p class="last-played">Last played on 20 Aug, 2024</p>
-                    </div>
-                </div>
-                <div class="activity-item">
-                    <img src="../assets/images/Falling Frenzy1.jpeg" alt="Celeste" class="game-thumbnail">
-                    <div class="activity-info">
-                        <p class="game-title">Celeste</p>
-                        <p class="play-time">62 hrs on record</p>
-                        <p class="last-played">Last played on 20 Aug, 2024</p>
-                    </div>
-                </div>
-                <div class="activity-item">
-                    <img src="../assets/images/Falling Frenzy1.jpeg" alt="Celeste" class="game-thumbnail">
-                    <div class="activity-info">
-                        <p class="game-title">Celeste</p>
-                        <p class="play-time">62 hrs on record</p>
-                        <p class="last-played">Last played on 20 Aug, 2024</p>
-                    </div>
-                </div>
-                <!-- Add more activity-item blocks for additional games -->
             </section>
         </div>
     </main>
