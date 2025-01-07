@@ -61,6 +61,17 @@ function didWin(player){
     return false;
 }
 
+function didTie() {
+    for (let row=0; row < 3; row++) {
+        for (let col=0; col<3; col++) {
+            if (board[row][col] == 0)
+                return false;
+        }
+    }
+
+    return true;
+}
+
 function endGame() {
     // Get all cells
     const cells = document.querySelectorAll('.cell');
@@ -110,6 +121,15 @@ function onClick(event) {
             endGame();
             setTimeout(() => {
                 const retry = confirm(`Player ${altType} won! Retry?`);
+                if (retry) {
+                    buildBoard();
+                }
+            }, 500); // Delay matches the timeout in endGame
+        }
+        else if (didTie()) {
+            endGame();
+            setTimeout(() => {
+                const retry = confirm(`You tied! Retry?`);
                 if (retry) {
                     buildBoard();
                 }

@@ -3,7 +3,7 @@ form{
     flex-direction: column;
     input{
         width: 100%;
-        max-width: 280px; /* Ensures the error message doesn't exceed the width of the form */
+        max-width: 280px;
         font-size: 1.3em;
         border-radius: 0.6em;
         padding: 12px 20px;
