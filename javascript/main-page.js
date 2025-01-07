@@ -77,8 +77,3 @@ seeMore.forEach(button => {
     button.addEventListener('click', () => { window.location.href = '/html/games.html'; });
 });
 
-// Check if the user is not logged in yet
-if (sessionStorage.getItem('loggedIn') == null ||sessionStorage.getItem('loggedIn') === 'false') {
-    // Redirect directly if they revisit the home page
-    window.location.href = '/index.html';
-}
