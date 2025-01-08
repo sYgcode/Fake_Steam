@@ -8,7 +8,7 @@ const exampleUser = {
         Game3: { timePlayed: 0, lastPlayed: new Date(), highScore: { score: 0, time: new Date() } }
     }
 }
-
+const allowedAttempts = 3;
 
 function customHash(input) {
     let hash = 5381; // Starting with a prime number
@@ -118,6 +118,7 @@ function checkPassword(event){
 
 
 function loggedIn(username){
+    deleteCookie('loginAttempts');
     sessionStorage.setItem('loggedIn', 'true');
     sessionStorage.setItem('username', username);
     window.location.href = '/html/main-page.html';
@@ -173,6 +174,17 @@ function login(event) {
     const password = document.getElementById('passwordL').value;
 
     const not_valid = document.getElementById('not_validL');
+    let attempts = parseInt(getCookie('loginAttempts')) || 0;
+    if (attempts >= allowedAttempts) {
+        // Set a lockout cookie that expires in 5 minutes
+        setCookie('lockout', 'true', 5);
+        deleteCookie('loginAttempts'); // Reset login attempts
+    }
+    const lockout = getCookie('lockout');
+    if (lockout) {
+        nonVal(not_valid, "Too many attempts, try again later");
+        return;
+    }
     for (let user of users) {
         if (user.username == username) {
             if (user.password == customHash(password)){
@@ -180,13 +192,14 @@ function login(event) {
                 return;
             }
             else {
-                nonVal(not_valid, "Username and password don't match");
+                attempts++;
+                nonVal(not_valid,  `Username and password don't match, ${allowedAttempts-attempts} attempts left`);
+                setCookie('loginAttempts', attempts, 30); // Set cookie to expire in 30 minutes
                 return;
             }
         }
     }
-    not_valid.style.fontSize = '1em';
-    not_valid.textContent = "Username doesn't exist"
+    nonVal(not_valid, "Username doesn't exist");
     return;
 }
 
@@ -230,6 +243,30 @@ function playMusic(event){
         sessionStorage.setItem("isMusicPlaying", "true");
     }
 
+}
+
+// Function to get a cookie value by name
+function getCookie(name) {
+    const cookies = document.cookie.split(';');
+    for (let cookie of cookies) {
+        cookie = cookie.trim();
+        if (cookie.startsWith(`${name}=`)) {
+            return cookie.substring(name.length + 1);
+        }
+    }
+    return null;
+}
+
+// Function to set a cookie
+function setCookie(name, value, minutes) {
+    const expires = new Date();
+    expires.setTime(expires.getTime() + minutes * 60 * 1000);
+    document.cookie = `${name}=${value}; expires=${expires.toUTCString()}; path=/`;
+}
+
+// Function to delete a cookie
+function deleteCookie(name) {
+    setCookie(name, '', -1);
 }
 
 function playMusicOnStart(){

@@ -1,4 +1,5 @@
 const restartButton = document.getElementById('restart-game');
+const musicButton = document.getElementById('music-button');
 let board = [
     [0,0,0],
     [0,0,0],

@@ -25,3 +25,17 @@ body {
     border-radius: 5px;
     cursor: pointer;
 }
+
+#music-button {
+    position: absolute;
+    top: 50%;
+    left: 90%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    max-height: 80px;
+    display: flex;
+    position: absolute;
+    z-index: 1000; /* Ensure it's above other elements */
+    pointer-events: auto; /* Ensure it is clickable */
+    cursor: pointer; /* Makes it clear that it's clickable */
+}
