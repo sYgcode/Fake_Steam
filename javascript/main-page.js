@@ -10,6 +10,7 @@ const gameList = {'Falling Frenzy':'fallingfrenzy', 'Tic-Tac-Toe':'tictactoe'} /
 const username = sessionStorage.getItem('username');
 const gamesOwned = JSON.parse(JSON.parse(localStorage.getItem('users')).find(user => user.username === username).gamesOwned);
 
+// Close the game preview modal
 closeButton.textContent = "Close Game";
 closeButton.addEventListener("click", () => {
     playPreview.style.top = "-100vh";
@@ -18,6 +19,7 @@ closeButton.addEventListener("click", () => {
     previewTitle.textContent = "Game Preview";
 });
 
+// Start the game preview modal
 function startModal(iframeName) {
     document.body.classList.add('dimmed');
     playPreview.style.top = "0";
@@ -31,26 +33,31 @@ function startModal(iframeName) {
     }
 }
 
+// Change the play button to "Play" if the game is already owned
 function ownedGame(button) {
     button.textContent = "Play";
     button.style.width = "200px";
 }
 
+// Add event listeners to the play buttons
 playButtons.forEach(button => {
     // Find the game name by traversing the DOM and locating the h4 element that contains the game name
     let gameName = button.parentElement.previousElementSibling.firstElementChild.textContent;
     const iframeName = gameList[gameName];
     gameName = gameName.replace(/\s/g, '');
 
+    // Start modal if the play button is clicked
     button.addEventListener('click', () => {
         if (Object.keys(gamesOwned).includes(gameName)) 
             previewTitle.textContent = gameName;
         startModal(iframeName);
     });
 
+    // Change the play button to "Play" if the game is already owned
     if (Object.keys(gamesOwned).includes(gameName)) { ownedGame(button); }
 });
 
+// Buy the game and add it to the user's gamesOwned
 function buyGame(gameName, button) {
     Object.defineProperty(gamesOwned, gameName, { value: { timePlayed: 0, lastPlayed: new Date(), highScore: { score: 0, time: new Date() } } });
     
@@ -68,6 +75,7 @@ function buyGame(gameName, button) {
     ownedGame(playButton);
 }
 
+// Add event listeners to the buy buttons
 buyButtons.forEach(button => {
     const gameName = button.parentElement.previousElementSibling.firstElementChild.textContent.replace(/\s/g, '');
 
@@ -78,6 +86,7 @@ buyButtons.forEach(button => {
     }
 });
 
+// Redirect to games.html when the "See More" button is clicked
 seeMore.forEach(button => {
     button.addEventListener('click', () => { window.location.href = '/html/games.html'; });
 });
