@@ -2,6 +2,7 @@ const userProfileWelcome = document.getElementById('user-welcome');
 const searchButton = document.getElementById('search-button');
 const homeButton = document.getElementById('home-button');
 const gamesButton = document.getElementById('games-button');
+const logoutButton = document.getElementById('logout-button');
 const userProfileHolder = document.getElementById('profile-holder');
 const username = sessionStorage.getItem('username');
 
@@ -23,6 +24,11 @@ homeButton.addEventListener('click', () => {
 
 gamesButton.addEventListener('click', () => {
     window.top.location.href = "games.html";
+});
+
+logoutButton.addEventListener('click', () => {
+    sessionStorage.setItem('loggedIn', 'false');
+    window.top.location.href = "/index.html";
 });
 
 userProfileHolder.addEventListener('click', () => {

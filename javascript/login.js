@@ -10,13 +10,14 @@ const exampleUser = {
 }
 const allowedAttempts = 3;
 
+// custon hash, srats witha prime num, multiplies by 33 and XOR with char unicdoe, make sure it's positive
 function customHash(input) {
-    let hash = 5381; // Starting with a prime number
+    let hash = 5381;
     for (let i = 0; i < input.length; i++) {
-        const charCode = input.charCodeAt(i); // Get the Unicode of the character
-        hash = (hash * 33) ^ charCode; // Multiply by 33 and XOR with the character code
+        const charCode = input.charCodeAt(i);
+        hash = (hash * 33) ^ charCode;
     }
-    return hash >>> 0; // Ensure the hash is non-negative by using unsigned right shift
+    return hash >>> 0;
 }
 
 // function to retrieve the users array, if it doesn't exist then create a new one
@@ -30,6 +31,7 @@ function initializeUserArray() {
     return JSON.parse(users);
 }
 
+// update the not valid text box
 function nonVal(elem, text, color="red") {
     elem.style.display = "block";
     elem.textContent = text;
@@ -43,7 +45,7 @@ function createUser (username, email, password, profilePicture="profile_holder.p
 // add user object to array
 function addUser(newUser) {
     let users = initializeUserArray();
-    // Append the example user if not already in the array
+    // append the example user if not already in the array
     if (!users.some(user => user.username === newUser.username)) {
         users.push(newUser);
         localStorage.setItem('users', JSON.stringify(users));
@@ -53,15 +55,19 @@ function addUser(newUser) {
     return false;
 }
 
+// check the username validity
 function checkUsername(username, users) {
+    if(length(username) > 10)
+        return 1
     for (let user of users) {
         if (username == user.username) {
-            return false;
+            return 2;
         }
     }
-    return true;
+    return 0;
 }
 
+// make sure email is not used
 function checkEmail(email, users) {
     for (let user of users) {
         if (email == user.email) {
@@ -71,17 +77,16 @@ function checkEmail(email, users) {
     return true;
 }
 
+// make sure password has uppercase, is 8 digits long, has lowercase, has number, and has a special char
 function isPasswordSuitable(password) {
-    // Minimum length requirement
     const minLength = 8;
 
-    // Regular expressions for required character types
+    // regular expressions for required character types
     const hasUppercase = /[A-Z]/;
     const hasLowercase = /[a-z]/;
     const hasDigit = /\d/;
     const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/;
 
-    // Check password against rules
     if (password.length < minLength) {
         return "Password must be at least 8 characters long.";
     }
@@ -98,10 +103,10 @@ function isPasswordSuitable(password) {
         return "Password must include at least one special character.";
     }
 
-    // If all checks pass
     return true;
 }
 
+// check password validity
 function checkPassword(event){
     password = document.getElementById("passwordS").value;
     let isValid = isPasswordSuitable(password);
@@ -116,7 +121,7 @@ function checkPassword(event){
 
 
 
-
+// execute on log in
 function loggedIn(username){
     deleteCookie('loginAttempts');
     sessionStorage.setItem('loggedIn', 'true');
@@ -124,6 +129,7 @@ function loggedIn(username){
     window.location.href = '/html/main-page.html';
 }
 
+// signup function
 function signup(event) {
     event.preventDefault();
     let users = initializeUserArray();
@@ -133,7 +139,12 @@ function signup(event) {
 
     const not_valid_username = document.getElementById('not_valid_usernameS');
     not_valid_username.style.display = "none";
-    if (!checkUsername(username, users)){
+    const username_val = checkUsername(username, users)
+    if (username_val==1){
+        nonVal(not_valid_username, "Username is too long");
+        return;
+    }
+    else if (username_val==2){
         nonVal(not_valid_username, "Username already exists");
         return;
     }
@@ -176,9 +187,9 @@ function login(event) {
     const not_valid = document.getElementById('not_validL');
     let attempts = parseInt(getCookie('loginAttempts')) || 0;
     if (attempts >= allowedAttempts) {
-        // Set a lockout cookie that expires in 5 minutes
+        // set a lockout cookie that expires in 5 minutes
         setCookie('lockout', 'true', 5);
-        deleteCookie('loginAttempts'); // Reset login attempts
+        deleteCookie('loginAttempts'); // reset login attempts
     }
     const lockout = getCookie('lockout');
     if (lockout) {
@@ -194,7 +205,7 @@ function login(event) {
             else {
                 attempts++;
                 nonVal(not_valid,  `Username and password don't match, ${allowedAttempts-attempts} attempts left`);
-                setCookie('loginAttempts', attempts, 30); // Set cookie to expire in 30 minutes
+                setCookie('loginAttempts', attempts, 30);
                 return;
             }
         }
@@ -245,7 +256,7 @@ function playMusic(event){
 
 }
 
-// Function to get a cookie value by name
+// function to get a cookie value by name
 function getCookie(name) {
     const cookies = document.cookie.split(';');
     for (let cookie of cookies) {
@@ -257,14 +268,14 @@ function getCookie(name) {
     return null;
 }
 
-// Function to set a cookie
+// function to set a cookie
 function setCookie(name, value, minutes) {
     const expires = new Date();
     expires.setTime(expires.getTime() + minutes * 60 * 1000);
     document.cookie = `${name}=${value}; expires=${expires.toUTCString()}; path=/`;
 }
 
-// Function to delete a cookie
+// function to delete a cookie
 function deleteCookie(name) {
     setCookie(name, '', -1);
 }
