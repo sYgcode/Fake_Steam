@@ -54,12 +54,14 @@ function addUser(newUser) {
 }
 
 function checkUsername(username, users) {
+    if(length(username) > 10)
+        return 1
     for (let user of users) {
         if (username == user.username) {
-            return false;
+            return 2;
         }
     }
-    return true;
+    return 0;
 }
 
 function checkEmail(email, users) {
@@ -133,7 +135,12 @@ function signup(event) {
 
     const not_valid_username = document.getElementById('not_valid_usernameS');
     not_valid_username.style.display = "none";
-    if (!checkUsername(username, users)){
+    username_val = checkUsername(username, users)
+    if (username_val==1){
+        nonVal(not_valid_username, "Username is too long");
+        return;
+    }
+    else if (username_val==2){
         nonVal(not_valid_username, "Username already exists");
         return;
     }
