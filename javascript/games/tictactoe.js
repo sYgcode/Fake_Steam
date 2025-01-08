@@ -23,8 +23,8 @@ function buildBoard() {
         for (let col = 0; col < 3; col++) {
             const cell = document.createElement('div');
             cell.classList.add('cell');
-            cell.dataset.row = row; // Store row index
-            cell.dataset.col = col; // Store column index
+            cell.dataset.row = row;
+            cell.dataset.col = col;
 
             // Add click event listener
             cell.addEventListener('click', onClick);
@@ -77,15 +77,12 @@ function endGame() {
     // Get all cells
     const cells = document.querySelectorAll('.cell');
 
-    // Add a slight delay to ensure the last image has time to load
     // Remove all event listeners
     cells.forEach(cell => {
         // Clone the cell and replace it to remove all listeners
         const newCell = cell.cloneNode(true);
         cell.parentNode.replaceChild(newCell, cell);
     });
-
-    console.log("Game ended. All listeners removed."); // Adjust the delay (in milliseconds) if needed
 }
 
 // Handle click event
@@ -107,11 +104,11 @@ function onClick(event) {
             altType = 'O';
         }
         // Update board array and cell display
-        board[row][col] = altType; // Or alternate with 'O'
+        board[row][col] = altType;
         // Create an image element
         const img = document.createElement('img');
-        img.src = source; // Replace with your X or O image URL
-        img.alt = altType; // Use 'O' for the other player
+        img.src = source; 
+        img.alt = altType; 
         img.style.width = '100%';
         img.style.height = '100%';
 
@@ -134,7 +131,7 @@ function onClick(event) {
                 if (retry) {
                     buildBoard();
                 }
-            }, 500); // Delay matches the timeout in endGame
+            }, 400); // Delay matches the timeout in endGame
         }
     }
 }
