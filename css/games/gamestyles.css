@@ -39,3 +39,7 @@ body {
     pointer-events: auto; /* Ensure it is clickable */
     cursor: pointer; /* Makes it clear that it's clickable */
 }
+
+#no-preview-available {
+    text-align: center;
+}
