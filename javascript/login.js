@@ -57,7 +57,7 @@ function addUser(newUser) {
 
 // check the username validity
 function checkUsername(username, users) {
-    if(length(username) > 10)
+    if(username.length > 10)
         return 1
     for (let user of users) {
         if (username == user.username) {
