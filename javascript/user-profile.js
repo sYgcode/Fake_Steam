@@ -9,8 +9,8 @@ profilePicture.src = `../assets/images/${user.profilePicture}`;
 username.textContent = user.username;
 email.textContent = user.email;
 
-for (let game in user.gamesOwned) {
-    const gamePlayed = user.gamesOwned[game];
+for (let game in JSON.parse(user.gamesOwned)) {
+    const gamePlayed = JSON.parse(JSON.parse(user.gamesOwned)[game]);
     const gameDiv = document.createElement('div');
     gameDiv.classList.add('activity-item');
 

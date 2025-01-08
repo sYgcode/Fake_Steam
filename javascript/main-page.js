@@ -38,8 +38,9 @@ function ownedGame(button) {
 
 playButtons.forEach(button => {
     // Find the game name by traversing the DOM and locating the h4 element that contains the game name
-    const gameName = button.parentElement.previousElementSibling.firstElementChild.textContent;
+    let gameName = button.parentElement.previousElementSibling.firstElementChild.textContent;
     const iframeName = gameList[gameName];
+    gameName = gameName.replace(/\s/g, '');
 
     button.addEventListener('click', () => {
         if (Object.keys(gamesOwned).includes(gameName)) 
